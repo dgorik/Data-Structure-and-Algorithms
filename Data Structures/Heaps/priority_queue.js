@@ -1,10 +1,11 @@
 class MaxBinaryHeap{
     constructor(){
-        this.values = [41,39,33,18,27,12]
+        this.values = []
     }
 
-    insert(val){
-        this.values.push(val)
+    enqueue(val){
+        let newNode = new Node(val, priority)
+        this.values.push(newNode)
 
         var bubbleup = () => {
             let idx = this.values.length - 1
@@ -12,7 +13,7 @@ class MaxBinaryHeap{
             while(idx > 0){
                 let parentIdx = Math.floor((idx - 1)/2)
                 let parent = this.values[parentIdx]
-                if(element > parent){
+                if(element.priority > parent.priority){
                     [this.values[parentIdx], this.values[idx]] = [this.values[idx], this.values[parentIdx]]
                     idx = parentIdx
                 }
@@ -25,7 +26,7 @@ class MaxBinaryHeap{
         bubbleup()
     }
 
-    extractMax(){
+    dequeue(){
         const max = this.values[0]
         const end = this.values.pop()
         if(this.values.length > 0){
@@ -48,14 +49,14 @@ class MaxBinaryHeap{
     
             if(leftChild < length){
                 leftChild = this.values[leftChildIdx]
-                if(leftChild > element){
+                if(leftChild.priority > element.priority){
                     swap = leftChild
                 }
             }
     
-            if(rightChild < length){
+            if(rightChild.pr < length){
                 rightChild = this.values[rightChildIdx]
-                if((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)){
+                if((swap === null && rightChild.priority > element.priority) || (swap !== null && rightChild.priority> leftChild.priority)){
                     swap = rightChildIdx
                 }
             }
@@ -70,11 +71,10 @@ class MaxBinaryHeap{
     }
 }
 
-let heap = new MaxBinaryHeap()
-
-heap.insert(55)
-
-heap.extractMax()
-
-console.log(heap)
+class Node {
+    constructor(){
+        this.val = val
+        this.priority = priority
+    }
+}
 
