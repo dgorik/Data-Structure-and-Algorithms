@@ -119,25 +119,66 @@ class SinglyLinkedList {
     }
 
     insert(index, value) {
-        if (index < 0 || index > this.length) return false
+        if (index < 0 || index > this.length) return false //in this case, we would try to insert something that is out-of-bounds of the list
 
-        if (index == this.lenght) return !!this.push(value)
+        if (index == this.lenght) return !!this.push(value) //if the index is equal to the length of the list, we just need to push the value to the end of the list
 
-        if (index == 0) return !!this.unshift(value)
+        if (index == 0) return !!this.unshift(value) //if the index is 
 
-        var previous = this.get(index - 1)
+        var previous = this.get(index - 1) //here we are getting a node that is one index before the one we are trying to insert, we will then connect this node to the one we are inserting
 
-        var newNode = new Node(index, value)
+        var newNode = new Node(index, value) //we are creating a new node by passing a value for the node we want to insert
 
-        var temp = previous.next
+        var temp = previous.next //we are storing that node that currently comes after previous. We are doing that to preserve the connection after we insert a new node
 
-        previous = newNode
+        previous = newNode //we  are connecting previous node to a newly inserted node
 
-        newNode.next = temp
+        newNode.next = temp //we are connecting a newly inserted node to the one that we stored in temp variable( this node originally was coming after previous)
 
-        this.length++
+        this.length++ //we increment length by 1
 
         return true
+    }
+
+    remove(index) {
+        if (index < 0 || index > this.length) return undefined
+
+        if (index == this.lenght - 1) return this.pop() //if the index is equal to the length of the list, we just need to pop the last element
+
+        if (index == 0) return this.shift() //if the index is 0, we just need to remove the first element with a method shift
+
+        var previousNode = this.get(index - 1); //we are getting the node that comes before the one we are trying to remove
+
+        var removed = previousNode.next; //this is the node we are trying to remove, we assign it to variable removed and subsequently return it
+
+        previousNode.next = previousNode.next.next; //we are connecting the node that came before the one we removed to the node that come after the node we removed, essentially erasing the node we removed from the list
+
+        this.length--; // we are decrementing the lenght of the array by one
+
+        return removed;
+
+    }
+
+    reverse() {
+        var node = this.head
+        this.head = this.tail
+        this.tail = node
+
+        var next
+        var previous = null //we are originally pointing this to null because we start from the first node and the previous node doesn't exist
+
+        for (var i = 0; i < this.length; i++) {
+            next = node.next //we create a temp variable and point it to the node next to the one we are looking at
+            node.next = previous //here we are changing the next pointer of each node to the previous node
+            prev = node //
+            node = next
+        }
+
+        return this
+
+        //[100, 200, 4000, 34, 58]
+        //PREV  NODE NEXT
+
     }
 }
 
