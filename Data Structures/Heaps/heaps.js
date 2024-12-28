@@ -6,9 +6,9 @@ class MaxBinaryHeap{
     insert(val){
         this.values.push(val)
 
-        function bubbleup(){
+        var bubbleup = () => {
             let idx = this.values.length - 1
-            const element = this.value[this.values.length - 1]
+            const element = this.values[this.values.length - 1]
             while(true){
                 let parentIdx = Math.floor((idx - 1)/2)
                 let parent = this.values[parentIdx]
