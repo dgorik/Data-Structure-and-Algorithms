@@ -7,7 +7,7 @@ function pivot(arr, start = 0, end = arr.length + 1) { //this function is respon
     }
     var pivot = arr[start]
 
-    var swapIdx = start //swapIdx will eventually tell us where to inser the pivot element so that all elements to the left of it are smaller than pivot and all elements to the right of it are bigger than pivot
+    var swapIdx = start //swapIdx will eventually tell us where to insert the pivot element so that all elements to the left of it are smaller than pivot and all elements to the right of it are bigger than pivot
 
     for (let i = start + 1; i <= end; i++) {
         if (pivot > arr[i]) {
@@ -27,7 +27,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
         let pivotIndex = pivot(arr, left, right) //here we are calling a pivot method on array to find the position of a pivot element 
 
         //left
-        quickSort(arr, left, pivotIndex - 1) //we then reccursiely perform quicksort at the left of pivotIndex
+        quickSort(arr, left, pivotIndex - 1) //we then recursievly perform quicksort at the left of pivotIndex
 
         //right
         quickSort(arr, pivotIndex + 1, right) //and at the right of pivot index

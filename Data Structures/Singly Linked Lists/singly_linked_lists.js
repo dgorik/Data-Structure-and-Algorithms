@@ -160,18 +160,16 @@ class SinglyLinkedList {
     }
 
     reverse() {
-        var node = this.head
-        this.head = this.tail
-        this.tail = node
 
-        var next
         var previous = null //we are originally pointing this to null because we start from the first node and the previous node doesn't exist
+        var current = this.head //we are starting from the beginning of the list so current equals to the head
+        var next = this.head //temp variable where we store the next node in the list
 
-        for (var i = 0; i < this.length; i++) {
-            next = node.next //we create a temp variable and point it to the node next to the one we are looking at
-            node.next = previous //here we are changing the next pointer of each node to the previous node
-            prev = node //
-            node = next
+        while (current) {
+            next = current.next //here we are storing the variable next to current as we are going to break that connection on the next line and need a way to come back to it later
+            current.next = previous //here we are changing the next pointer of each node (=>) to the previous node (<=), so now it's pointing to the reversed list
+            prev = current //here we are setting prev to the value of current, which will have the recently reversed node as well as links that come before it
+            current = next //we are setting current to next which is the portion of the array that we need to continue working on
         }
 
         return this
